@@ -3,10 +3,10 @@ from django.shortcuts import render , redirect
 import datetime as dt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import  MoringaMerch
-from .serializer import *
-from rest_framework import status
-from .permissions import IsAdminOrReadOnly
+#from .models import  
+#from .serializer import *
+#from rest_framework import status
+#from .permissions import IsAdminOrReadOnly
 # Create your views here.
 
 def main(request):
