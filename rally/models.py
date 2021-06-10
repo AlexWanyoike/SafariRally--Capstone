@@ -47,10 +47,11 @@ class Section(models.Model):
 
 
 class Post(models.Model):
+    description = models.CharField(max_length=30)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE , null=True)
     image = models.ImageField(upload_to='media/')
-    description = models.TextField(max_length=160)
+    
     date_posted = models.DateField(null=True, auto_now_add=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
@@ -60,9 +61,7 @@ class Post(models.Model):
     def __str__(self):
         return self.description
 
-    def __str__(self):
-        return self.status
-
+    
 
     def save_image(self):
         self.save()
