@@ -18,3 +18,25 @@ from django.http import JsonResponse
 def main(request):
     return render(request, 'main.html')
 
+def profile(request):
+    return render(request, 'profiile.html')
+
+def detail(request):
+    return render(request , 'details.html')
+
+def create_profile(request):
+    return render(request, 'create_profile.html')
+
+def edit_profile(request):
+    return render(request, 'edit_profile.html')
+
+def create_post(request):
+    return render(request , 'create_post.html')
+
+def login(request):
+    return render(request , 'login.html')
+
+def register(request):
+    return render(request , 'register.html')
+
+
