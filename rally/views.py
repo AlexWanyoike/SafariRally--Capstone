@@ -19,7 +19,7 @@ def main(request):
     return render(request, 'main.html')
 
 def profile(request):
-    return render(request, 'profiile.html')
+    return render(request, 'profile.html')
 
 def detail(request):
     return render(request , 'details.html')
