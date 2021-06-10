@@ -21,7 +21,7 @@ def main(request):
 def profile(request):
     return render(request, 'profile.html')
 
-def detail(request):
+def details(request):
     return render(request , 'details.html')
 
 def create_profile(request):
@@ -38,5 +38,8 @@ def login(request):
 
 def register(request):
     return render(request , 'register.html')
+
+def comment(request):
+    return render(request , 'comment.html')
 
 
