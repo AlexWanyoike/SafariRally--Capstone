@@ -82,3 +82,25 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-date_posted']
+
+class Comment(models.Model):
+    content = models.TextField(max_length=300)
+    date_voted = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+
+    def __str__(self):
+        return self.content
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def get_post_comments(cls,post):
+        return cls.objects.filter(post =post)
+
+    class Meta:
+        ordering = ['-date_voted']
