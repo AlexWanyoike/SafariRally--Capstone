@@ -6,7 +6,7 @@ class CommentForm(forms.ModelForm ):
     
     class Meta:
         model = Comment
-        fields = ['user', 'post', 'content']
+        fields = ['user', 'post', 'content', 'date_voted']
 
 class CreatePostForm(forms.ModelForm):
     class Meta:

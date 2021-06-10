@@ -43,7 +43,7 @@ def profile(request , username):
 
 def details(request , pk):
     post = Post.objects.all()
-    post = Post.objects.get(id=pk)
+    post = Post.objects.get(pk=pk)
     profile = Profile.objects.all()
     comments = Comment.objects.all()
     context = {'post': post , 'profile': profile , 'comments': comments}
@@ -98,7 +98,14 @@ def register(request):
         form = UserRegisterForm()
     return render(request ,'/accounts/login.html' , {'form': form})
 
-def comment(request):
-    return render(request , 'comment.html')
+def comment(request , post_id):
+    current_user = request.user
+    post = Post.objects.get(pk=post_id)
+    content = request.GET.get("comment")   
+    user = request.user
+    comment = Comment(post=post,content=content,user=current_user)
+    comment.save_comment()
+
+    return redirect('main')
 
 

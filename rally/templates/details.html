@@ -14,25 +14,35 @@
     {% endblock %}
 </head>
 <body>
-
+  <div class="container mt-3">
+    <a href="{% url 'main'%}" class="btn-btn-dark">Home Page</a>
+</div>
     <section class="gallery-block cards-gallery">
         <div class="container">
-            
+          <h5 class="text-center">{{post.driver}}</h5>
             <div class="row">
+                
                 <div class="container-fluid">
                     <div class="card border-0 transform-on-hover">
-                        <a class="lightbox" href=""><img [src]="image1" class="card-img-top" width="50%" height="50%"></a>
+                       
+                        <a class="lightbox" href=""><img src="{{ post.image.url}}" class="card-img-top" width="50%" height="50%"></a>
                         <div class="card-body">
-                            <h6>Lorem Ipsum</h6>
-                            <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            <h6>{{post.driver}} - {{post.section}} - {{post.status}}</h6>
+                            <p class="text-muted card-text">{{post.description}} -at-
+                            <span class="fw-normal">
+                              {{post.date_posted}}
+                            </span>
+                            </p>
                         </div>
 
                         
                     </div>
                 </div>
                 <div class="container">
-                    <form role="add_comment" action= "">
-                      
+                    
+                    
+                    <form role="add_comment" action= "{% url 'comment' post_id=post.id%}">
+                      {% csrf_token%}
                       <div class="fal fa-comment">
                           <input type="text" class="form-control" placeholder="Add a comment" name="comment"
                               style="font-size: 1.2rem; border: 0;">
@@ -41,33 +51,26 @@
                           </div>
                       </div>
                     </form>
-                    <br>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
+                      {% for comment in comments %}
+                        {% if comment.post.id == post.id%}
+      
+                          <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-capitalize">{{comment.user}}</h5>
+                                <small>{{comment.date_voted}}</small>
+                              </div>
+                              <p class="mb-1 text-capitalize"> {{comment.content }}</p>
+                              <h6>Driver: {{post.status}}</h6>
+                            </a>
                           </div>
-                          <p class="mb-1">Some placeholder content in a paragraph.</p>
-                          <small>And some small print.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Some placeholder content in a paragraph.</p>
-                          <small class="text-muted">And some muted small print.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Some placeholder content in a paragraph.</p>
-                          <small class="text-muted">And some muted small print.</small>
-                        </a>
-                      </div>
+                          
+                        {% endif %}
+                          
+                        
+                      {% endfor %}
+                    </div>
                 </div>
                 
                
