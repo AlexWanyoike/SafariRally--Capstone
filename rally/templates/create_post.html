@@ -1,0 +1,45 @@
+{% load bootstrap4 %} 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if title %}
+    <title>Create Post {{title}}</title>
+    {% else %}
+    <title>Create Post</title>
+    {% endif %} 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static  '/css/create_post.css' %}" />
+    
+  </head>
+    <body class="m-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <div class="card-body">
+              <a href="{% url 'main' %}" class="btn btn-dark my-3">Home Page</a>
+            </div>
+
+            <div class="card">
+              <form method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data" >
+                {% csrf_token %}             
+                {% bootstrap_form form%}
+                <button type="submit" class="btn btn-dark m-3" value="Post">
+                  Submit
+                </button>
+              </form>
+              <hr>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    
+  </body>
+</html>
+

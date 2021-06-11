@@ -11,7 +11,7 @@ urlpatterns=[
     path('create_profile/',views.create_profile,name = 'create_profile'),
     path('create_post/',views.create_post,name = 'create_post'),
     re_path('comment/(?P<post_id>\d+)', views.comment, name='comment'),
-    #path('welcome/', views.welcome_mail, name='welcome'),
+    path('welcome/', views.welcome_mail, name='welcome'),
     path('register',views.register,name = 'register'),
 ]
 if settings.DEBUG:

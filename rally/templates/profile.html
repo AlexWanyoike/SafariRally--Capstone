@@ -45,38 +45,27 @@
              
          </div>
         <div class="col-md-9">
-            <div class="form-text">
-                <section class="gallery-block cards-gallery">
-                    <div class="container">
-                        <div class="heading">
-                            <h2>Announcements</h2>
+            <div class="container">
+                <div class="container-fluid padding">
+                <h2 class="text-center">POSTS</h2>
+                <div class="row">
+                {% for post in post %}
+                
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <img class="card-imd-top" src="{{post.image.url}}"  href="{% url 'details' post.id %}"alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">{{post.description}}</h4>
+                                <p class="card-text">{{post.driver}} - {{post.section}} : {{post.status}}</p>
+                                <a href="{% url 'details' post.id %}" class="btn btn-outline-secondary">View Details</a>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card border-0 transform-on-hover">
-                                    <a class="lightbox" href="images/F1.jpg"><img src="images/F1.jpg" class="card-img-top"></a>
-                                    <div class="card-body">
-                                        <h6>Lorem Ipsum</h6>
-                                        <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card border-0 transform-on-hover">
-                                    <a class="lightbox" href="images/F1.jpg"><img src="images/F1.jpg" class="card-img-top"></a>
-                                    <div class="card-body">
-                                        <h6>Lorem Ipsum</h6>
-                                        <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                                    </div>
-                                </div>
-                            </div>
                     </div>
-                        
-                        
-                        
-                    </div>
-                </section>
-            </div>   
+                {% endfor %}
+                </div>
+                
+                </div>
+                </div>  
         </div>
      </div>
    </div>

@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render , redirect
 import datetime as dt
+from .forms import CommentForm, CreatePostForm, CreateProfileForm, UpdateProfileForm , NewsLetterForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
@@ -21,6 +22,7 @@ def main(request):
     context = {'post': post }
     return render(request, 'main.html' , context)
 
+@login_required
 def profile(request , username):
     date = dt.date.today()
     # post = Post.objects.get(pk=pk)
@@ -29,16 +31,6 @@ def profile(request , username):
     profile = Profile.get_profile(username)
     context = {'post': post,'profile': profile, 'date': date}
     return render(request ,'profile.html' , context)
-
-    # def user_profile(request, username):
-    
-    # date = dt.date.today()
-    # images = Image.get_image_by_user(username)
-    # profile = Profile.get_profile(username)
-
-    # context = {'images': images ,'profile': profile, 'date': date}
-
-    # return render(request ,'profile.html' , context )
     
 
 def details(request , pk):
@@ -48,6 +40,7 @@ def details(request , pk):
     comments = Comment.objects.all()
     context = {'post': post , 'profile': profile , 'comments': comments}
     return render(request ,'details.html', context)
+
 
 def create_profile(request):
     current_user = request.user
@@ -64,9 +57,21 @@ def create_profile(request):
         form = CreateProfileForm()
     return render(request, 'create_profile.html', {"form": form})
     
+@login_required
+def edit_profile(request , username):
+    user = User.objects.get(username=username)
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
 
-def edit_profile(request):
-    return render(request, 'edit_profile.html')
+        return redirect('profile', user.username)
+
+    else:
+        form = UpdateProfileForm(instance=current_user.profile)
+
+    return render(request, 'edit_profile.html' , {"form": form})
 
 def create_post(request):
     current_user = request.user
@@ -84,7 +89,8 @@ def create_post(request):
 
 
 def login(request):
-    return render(request , 'login.html')
+    return render(request ,'/registration/login.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -98,6 +104,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request ,'/accounts/login.html' , {'form': form})
 
+@login_required
 def comment(request , post_id):
     current_user = request.user
     post = Post.objects.get(pk=post_id)
@@ -107,5 +114,14 @@ def comment(request , post_id):
     comment.save_comment()
 
     return redirect('main')
+
+@login_required
+def welcome_mail(request):
+    user = request.user
+    email = user.email
+    name = user.username
+    send_welcome_email(name,email)
+    
+    return redirect(create_profile)
 
 

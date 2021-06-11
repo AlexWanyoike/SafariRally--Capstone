@@ -1,0 +1,119 @@
+.img {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 0.8rem;
+    padding-top: 0.8rem;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+}
+.carousel-caption {
+position: absolute;
+bottom: 25%;
+transform: translateY(-50%);
+}
+.carousel-caption h2 {
+font-size: 370%;
+text-transform: uppercase;
+text-shadow: 1px 1px 15px #000;
+}
+.carousel-caption h1 {
+font-size: 450%;
+text-transform: uppercase;
+text-shadow: 1px 1px 15px #000;
+}
+.carousel-caption h3 {
+font-size: 150%;
+font-weight: 100;
+text-shadow: 1px 1px 10px #000;
+transform: translateY(-25%);
+}
+.btn-primary {
+background-color: #6648b1;
+border: 1px solid #6648b1;
+}
+.btn-primary :hover {
+background-color: #6648b1;
+border: 1px solid #6648b1;
+}
+.padding {
+padding-bottom: 0.8rem;
+}
+.important {
+width: 100%;
+margin-bottom: 1rem;
+}
+
+.social a {
+font-size: 4.5em;
+padding: 2rem;
+}
+.footer {
+background-color: beige;
+padding: 1rem;
+box-sizing: border-box;
+}
+footer {
+background-color: beige;
+height: auto;
+width: 100vw;
+font-family: "san sarif";
+padding-top: 40px;
+}
+.social {
+padding: 2rem;
+transform: translateY(-25%);
+}
+.track {
+padding-top: 2rem;
+}
+.hunger {
+width: 10%;
+height: 10%;
+}
+.happy {
+transform: translateY(1200%);
+}
+.unique {
+transform: translateY(50%);
+}
+.extra {
+width: 100%;
+height: 100%;
+padding: 0.8rem;
+margin: 0px auto;
+display: flex;
+justify-content: center;
+}
+.box {
+width: 300px;
+margin: 0px;
+box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+transition: 1s;
+}
+.box img {
+display: block;
+width: 100%;
+border-radius: 5px;
+}
+.box:hover {
+transform: scale(1.3);
+z-index: 2;
+}
+.access {
+transform: translateY(60%);
+background: transparent;
+background-color: transparent;
+opacity: 0.8;
+}
+#react {
+display: none;
+}
+.orange {
+background: transparent;
+}
+#old {
+display: none;
+}
+#unmute {
+display: none;
+}
